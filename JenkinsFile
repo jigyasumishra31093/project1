@@ -1,0 +1,19 @@
+pipeline {
+        agent {
+            label 'tethys'
+        }
+        triggers {
+            pollSCM('H/2 * * * *')
+        }
+        tools {
+                jdk 'JDK_13.0.2'
+                maven 'apache-maven-3.6.3'
+        }
+        stages{
+            stage('Compile'){
+            steps{
+                sh 'mvn clean deploy'
+            }
+            }
+        }
+}
